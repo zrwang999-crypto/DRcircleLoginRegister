@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "SF Pro Display", ui-sans-serif, system-ui, sans-serif;
+  --color-gold: #d6b27e;
+  --color-dark: #2f261d;
+  --color-background: #f3ede5;
+  --color-card: #fffaf5;
+  --color-soft: #f2eadf;
+  --color-red-primary: #ff2442;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-background text-[#2f261d] font-sans antialiased;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.glass-pill {
+  @apply bg-white/80 backdrop-blur-xl border border-[#eadfce] shadow-sm;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
