@@ -314,8 +314,8 @@ export default function LoginScreen({ setScreen, showToast }: LoginScreenProps) 
                   <Check size={13} strokeWidth={4} />
                 </span>
                 <span className="text-[11px] text-[#8f7f6d] leading-relaxed">
-                  已阅读并同意<span className="text-[#FE2C55]">《用户协议》</span>和
-                  <span className="text-[#FE2C55]">《隐私政策》</span>
+                  已阅读并同意<span className="text-[#3b82f6]">《用户协议》</span>和
+                  <span className="text-[#3b82f6]">《隐私政策》</span>
                 </span>
               </button>
             </motion.div>
@@ -342,14 +342,14 @@ export default function LoginScreen({ setScreen, showToast }: LoginScreenProps) 
                   输入好友的
                   <button
                     type="button"
-                    className="text-[#FE2C55] font-black px-0.5 active:scale-95 transition-transform"
+                    className="text-[#3b82f6] font-black px-0.5 active:scale-95 transition-transform"
                   >
                     邀请码
                   </button>
                   或您的
                   <button
                     type="button"
-                    className="text-[#FE2C55] font-black px-0.5 active:scale-95 transition-transform"
+                    className="text-[#3b82f6] font-black px-0.5 active:scale-95 transition-transform"
                   >
                     订单号
                   </button>
@@ -422,15 +422,15 @@ export default function LoginScreen({ setScreen, showToast }: LoginScreenProps) 
                     ];
                     alert(`收不到验证码可能的原因：\n\n${reasons.join('\n')}`);
                   }}
-                  className="text-xs font-black text-[#FE2C55] tracking-widest active:scale-95 transition-transform hover:text-[#e4274d]"
+                  className="text-xs font-black text-[#3b82f6] tracking-widest active:scale-95 transition-transform hover:text-[#2563eb]"
                 >
                   收不到验证码
                 </button>
                 <button
                   onClick={requestSmsCode}
                   disabled={checking || countdown > 0}
-                  className={`text-xs font-black tracking-widest active:scale-95 transition-transform hover:text-[#e4274d] disabled:opacity-40 ${
-                    countdown > 0 ? 'text-[#baa897]' : 'text-[#FE2C55]'
+                  className={`text-xs font-black tracking-widest active:scale-95 transition-transform hover:text-[#2563eb] disabled:opacity-40 ${
+                    countdown > 0 ? 'text-[#baa897]' : 'text-[#3b82f6]'
                   }`}
                 >
                   {checking ? '发送中...' : countdown > 0 ? `${countdown}s` : '重新发送'}
@@ -500,8 +500,8 @@ export default function LoginScreen({ setScreen, showToast }: LoginScreenProps) 
             >
               <h3 className="text-[#2f261d] text-lg font-black">用户协议及隐私保护</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#7d6f61]">
-                已阅读并同意<span className="text-[#FE2C55]">《用户协议》</span>和
-                <span className="text-[#FE2C55]">《隐私政策》</span>
+                已阅读并同意<span className="text-[#3b82f6]">《用户协议》</span>和
+                <span className="text-[#3b82f6]">《隐私政策》</span>
               </p>
               <div className="mt-6 flex gap-3">
                 <button
