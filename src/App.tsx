@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { CheckCircle2, Sparkles } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import LoginScreen from './LoginScreen';
 import type { Screen } from './types';
@@ -7,6 +6,7 @@ import type { Screen } from './types';
 export default function App() {
   const [screen, setScreen] = useState<Screen>('login');
   const [toast, setToast] = useState<string | null>(null);
+  const [showConsentModal, setShowConsentModal] = useState(true);
 
   const showToast = (message: string) => {
     setToast(message);
@@ -38,47 +38,50 @@ export default function App() {
             transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
             className="h-full"
           >
-            {screen === 'login' ? (
+            <div className="relative h-full">
               <LoginScreen setScreen={setScreen} showToast={showToast} />
-            ) : (
-              <div className="flex h-full flex-col justify-between bg-[radial-gradient(circle_at_top,#fffaf6_0%,#f7f1e7_48%,#f2eadf_100%)] px-8 pb-10 pt-28 text-[#2f261d]">
-                <div className="space-y-6">
-                  <div className="inline-flex h-16 w-16 items-center justify-center rounded-[24px] bg-[#FE2C55]/12 text-[#FE2C55] shadow-[0_18px_40px_rgba(254,44,85,0.16)]">
-                    <CheckCircle2 size={34} strokeWidth={2.4} />
-                  </div>
-                  <div className="space-y-3">
-                    <p className="text-[11px] font-black uppercase tracking-[0.28em] text-[#caa189]">Auth Ready</p>
-                    <h1 className="text-4xl font-bold leading-tight">登录注册模块已完成</h1>
-                    <p className="text-sm font-bold leading-relaxed text-[#8f7f6d]">
-                      这个目录现在只负责登录注册流程，可以单独部署到认证域名或子路径。
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="rounded-[32px] border border-[#eadfce] bg-white/82 p-6 shadow-[0_18px_40px_rgba(103,81,58,0.06)]">
-                    <div className="flex items-start gap-3">
-                      <div className="mt-1 rounded-2xl bg-[#fff0f4] p-2.5 text-[#FE2C55]">
-                        <Sparkles size={18} />
-                      </div>
-                      <div className="space-y-2">
-                        <h2 className="text-base font-bold">部署建议</h2>
-                        <p className="text-sm leading-relaxed text-[#7d6f61]">
-                          把当前 `auth-standalone/` 设为部署根目录，构建产物直接使用 `dist/`。
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => setScreen('login')}
-                    className="h-14 w-full rounded-2xl bg-[#FE2C55] text-sm font-black text-white shadow-[0_18px_40px_rgba(254,44,85,0.22)] transition-transform active:scale-95"
+              <AnimatePresence>
+                {showConsentModal && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 z-[300] flex items-center justify-center bg-[rgba(72,56,39,0.18)] backdrop-blur-sm px-6"
                   >
-                    返回登录页
-                  </button>
-                </div>
-              </div>
-            )}
+                    <motion.div
+                      initial={{ scale: 0.96, y: 12 }}
+                      animate={{ scale: 1, y: 0 }}
+                      exit={{ scale: 0.96, y: 12 }}
+                      className="w-full max-w-[340px] rounded-[32px] bg-white p-6 text-left shadow-2xl border border-[#eadfce]"
+                    >
+                      <h3 className="text-center text-[26px] font-black text-[#111111]">用户协议与隐私政策</h3>
+                      <p className="mt-6 text-[18px] leading-[1.7] text-[#6b7280]">
+                        欢迎来到DR圈！我们非常重视您的个人信息和隐私保护，为了方便您了解相关内容，我们将通过
+                        <span className="text-[#3b82f6]">《用户协议》</span>
+                        和
+                        <span className="text-[#3b82f6]">《隐私政策》</span>
+                        向您说明，请您在使用产品服务前务必仔细阅读详细信息。如您同意，请点击“同意”开始接受我们的服务。
+                      </p>
+
+                      <div className="mt-10 space-y-4">
+                        <button
+                          onClick={() => setShowConsentModal(false)}
+                          className="h-16 w-full rounded-[28px] bg-[#FE2C55] text-xl font-black text-white shadow-[0_18px_40px_rgba(254,44,85,0.22)]"
+                        >
+                          同意
+                        </button>
+                        <button
+                          onClick={() => setShowConsentModal(false)}
+                          className="h-12 w-full text-lg font-medium text-[#c0c0c0]"
+                        >
+                          不同意
+                        </button>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
         </AnimatePresence>
 
